@@ -43,6 +43,7 @@ $totalLinhas = $listaTipos->num_rows;
                             <span class="glyphicon glyphicon-home"></span>
                         </a>
                     </li>
+                    <li class="alert-danger"><a>Faça sua reserva e leve uma sobremesa grátis!</a></li>
                     <li><a href="index.php#destaques">Destaques</a></li>
                     <li><a href="index.php#produtos">Produtos</a></li>
                     <!--Dropdown-->
@@ -94,11 +95,12 @@ $totalLinhas = $listaTipos->num_rows;
                             </div>  <!--  fecha inputp-group -->
                         </form>
                     </li>
+                    <li><a href="admin/reservas/reservas.php" class="btn btn-danger">Faça sua Reserva</a></li>
                     <li class="active">
                         <a href="admin/index.php">
                             <span class="glyphicon glyphicon-user"></span>&nbsp;Admin
                         </a>
-
+                        
                     </li>
                 </ul>
             </div><!-- Fecha Nav Direita -->

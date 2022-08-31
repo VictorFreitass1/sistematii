@@ -1,16 +1,20 @@
 <?php
-include('../connections/conn.php');
+include('../../connections/conn.php');
 // Inicia verificação do login
 if ($_POST) {
     //definindo o USE do banco de dados
     mysqli_select_db($conn, $database_conn);
     //verifica login e senha recebidos
     $login_usuario = $_POST['login_usuario'];
+    $cpf_usuario   = $_POST ['cpf_usuario'];
+    $email_usuario = $_POST ['email_usuario'];
     $senha_usuario = $_POST['senha_usuario'];
 
     $verificaSQL = "select * 
     from tbusuarios 
     where login_usuario = '$login_usuario' 
+    and   cpf_usuario = '$cpf_usuario'
+    and   email_usuario = '$email_usuario'
     and senha_usuario = md5('$senha_usuario');
     ";
     //echo $verificaSQL;
@@ -30,7 +34,7 @@ if ($_POST) {
         $_SESSION['nivel_usuario'] = $linha['nivel_usuario'];
         $_SESSION['nome_da_sessao'] = session_name();
      //   echo "<script>window.open('index.php','_self')</script>";
-        header ("location: index.php");
+        header ("location: pedido_reservas.php");
     } 
     else {
         echo "<script>window.open('invasor.php','_self')</script>";
@@ -44,15 +48,15 @@ if ($_POST) {
 <html lang="pt-br">
 
 <head>
-    <meta http-equiv="refresh" content="30;URL=../index.php">
-    <title>Login</title>
+    <meta http-equiv="refresh" content="30;URL=../pedido_reservas.php">
+    <title><?php echo SYS_NAME; ?> - Login</title>
     <meta charset="utf-8">
     <!-- Link arquivos Bootstrap css -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2495680ceb.js" crossorigin="anonymous"></script>
-    <link href="../css/meu_estilo.css" rel="stylesheet" type="text/css">
+    <link href="../../css/meu_estilo.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="fundofixo">
@@ -75,6 +79,20 @@ if ($_POST) {
                                             <span class="glyphicon glyphicon-user text-info" aria-hidden="true"></span>
                                         </span>
                                         <input type="text" name="login_usuario" id="login_usuario" class="form-control" autofocus required autocomplete="off" placeholder="Digite seu login.">
+                                    </p>
+                                    <label for="email_usuario">Email:</label>
+                                    <p class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-user text-info" aria-hidden="true"></span>
+                                        </span>
+                                        <input type="text" name="email_usuario" id="email_usuario" class="form-control" autofocus required autocomplete="off" placeholder="Digite seu Email.">
+                                    </p>
+                                    <label for="cpf_usuario">CPF:</label>
+                                    <p class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-user text-info" aria-hidden="true"></span>
+                                        </span>
+                                        <input type="text" name="cpf_usuario" id="cpf_usuario" class="form-control" autofocus required autocomplete="off" placeholder="Digite seu CPF.">
                                     </p>
                                     <label for="senha_usuario">Senha:</label>
                                     <p class="input-group">

@@ -24,7 +24,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <button type="button" class="btn btn-danger navbar-btn disabled">
-                            Olá, <?php echo$_SESSION['login_usuario'];?>
+                             Olá, <?php echo $_SESSION['login_usuario'];?>
                         </button>
                     </li>
                     <li class="active"><a href="index.php">Admin</a></li>
@@ -33,7 +33,6 @@
                     <li><a href="usuarios_lista.php">Usuarios</a></li>
                     <li class="active"><a href="../index.php"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li><a href="logut.php"><span class="glyphicon glyphicon-log-out"></span></a></li>
-                    <li><a href="reservas.php">Reservas</a></li>
                 </ul>
             </div><!-- Fecha nav a direita -->
         </div>
