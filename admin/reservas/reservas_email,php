@@ -31,7 +31,7 @@
                     $mail->CharSet = 'UTF8';
                     // Configurações do servidor
                     $mail->isSMTP();        //Devine o uso de SMTP no envio
-                    $mail->SMTPAuth = true; //Habilita a autenticação SMTP
+                    $mail->SMTPAuth = true; //Habilita a autenticação SMT
                     $mail->Username   = '72c5fc97125a88';
                     $mail->Password   = '8573035d97d15d';
                     // Criptografia do envio SSL também é aceito
