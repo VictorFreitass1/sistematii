@@ -90,6 +90,7 @@
                         </td>
                     </tr><!-- Fecha a linha da tabela -->
                 <?php } while ($linha = $lista->fetch_assoc()); ?>
+                ,
             </tbody><!-- Fecha corpo da tabela -->
         </table>
     </main>

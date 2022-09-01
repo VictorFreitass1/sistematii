@@ -1,6 +1,46 @@
 <?php 
     include('../../config.php');
-    include('../../connections/conn.php')
+    include('../../connections/conn.php');
+// Inicia verificação do login
+    if ($_POST) {
+        //definindo o USE do banco de dados
+        mysqli_select_db($conn, $database_conn);
+        //verifica login e senha recebidos
+        $login_usuario = $_POST['login_usuario'];
+        $cpf_usuario   = $_POST ['cpf_usuario'];
+        $email_usuario = $_POST ['email_usuario'];
+        $senha_usuario = $_POST['senha_usuario'];
+    
+        $verificaSQL = "select * 
+        from tbusuarios 
+        where login_usuario = '$login_usuario' 
+        and   cpf_usuario = '$cpf_usuario'
+        and   email_usuario = '$email_usuario'
+        and senha_usuario = md5('$senha_usuario');
+        ";
+        //echo $verificaSQL;
+        //carregar os dados e verificar a linha de retorno, caso exista
+        $lista_session = mysqli_query($conn, $verificaSQL);
+        $linha = $lista_session->fetch_assoc();
+        $numero_linhas = mysqli_num_rows($lista_session);
+    
+        // se a sessão não existir, iniciamos uma sessão
+        if (!isset($_SESSION)) {
+            $sessao_antiga = session_name("Chulettaaa");
+            session_start();
+            $sessao_name_new = session_name(); //Recupera o nome atual
+        }
+        if ($linha!=null) {
+            $_SESSION['login_usuario'] = $login_usuario;
+            $_SESSION['nivel_usuario'] = $linha['nivel_usuario'];
+            $_SESSION['nome_da_sessao'] = session_name();
+         //   echo "<script>window.open('index.php','_self')</script>";
+            header ("location: cadastrar_usuarios.php");
+        } 
+        else {
+            echo "<script>window.open('invasor.php','_self')</script>";
+        }
+    }
 ?>
 
 <!doctype html>
@@ -9,12 +49,14 @@
     <meta http-equiv="refresh">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/2495680ceb.js" crossorigin="anonymous"></script><!-- Link arquivos Bootstrap css -->
     <link rel="stylesheet" href="../../css/meu_estilo.css" type="text/css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
     <title><?php echo SYS_NAME; ?> - Login</title>
 </head>
+
 <body class="fundo">
-<?php include('../../menu_publico.php'); ?>
+<?php include('../../menu_publico.php'); ?>  
     <main class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-2 col-md-8">
@@ -73,10 +115,25 @@
                                                             <span class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-qrcode text-info" aria-hidden="true"></span>
                                                             </span>
-                                                                <input type="password" name="email_usuario" id="email_usuario" class="form-control" required autocomplete="off" placeholder="Digite seu email.">
+                                                                <input name="email_usuario" id="email_usuario" class="form-control" required autocomplete="off" placeholder="Digite seu email.">
                                                         </p>
+                                                            <label for="data_reserva">Data:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                                </span>
+                                                                <input maxlength="11" type="date" class="form-control" name="data_reserva" id="data_reserva" maxlength="100" required>
+                                                            </div>
+                                                            <br>
+                                                            <label for="hora_reserva">Hora:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+                                                                </span>
+                                                                <input type="time" class="form-control" name="hora_reserva" id="hora_reserva">
+                                                            </div>                                                       
                                                         <p class="text-center">                                                
-                                                            <input type="submit" value="Realizar reserva" class="btn btn-primary" for="cadastrar_usuarios">
+                                                            <input type="submit" value="Realizar reserva" class="btn btn-primary">
                                                         </p>
                                                     </form>
                                                 </div>

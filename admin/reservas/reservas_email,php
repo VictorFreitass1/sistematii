@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../css/meu_estilo.css" type="text/css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
 </head>
-
 <body class="fundofixo">
     <?php include('menu_publico.php'); ?>
     <main class="container">

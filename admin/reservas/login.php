@@ -43,20 +43,16 @@ if ($_POST) {
 ?>
 
 
-
 <!doctype html>
 <html lang="pt-br">
-
 <head>
-    <meta http-equiv="refresh" content="30;URL=../pedido_reservas.php">
-    <title><?php echo SYS_NAME; ?> - Login</title>
+    <meta http-equiv="refresh">
     <meta charset="utf-8">
-    <!-- Link arquivos Bootstrap css -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/2495680ceb.js" crossorigin="anonymous"></script><!-- Link arquivos Bootstrap css -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/2495680ceb.js" crossorigin="anonymous"></script>
     <link href="../../css/meu_estilo.css" rel="stylesheet" type="text/css">
+    <title><?php echo SYS_NAME; ?> - Login</title>
 </head>
 
 <body class="fundofixo">
